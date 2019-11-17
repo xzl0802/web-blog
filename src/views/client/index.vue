@@ -1,5 +1,8 @@
 <template>
+<div class="client_layout">
     
+    <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -9,5 +12,7 @@
 </script>
 
 <style scoped>
-
+.client_layout{
+    width: 100%;
+}
 </style>

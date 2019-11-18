@@ -1,15 +1,16 @@
 <template>
 <div class="client_layout">
-<header_client/>
+<headerBg/>
+<menuSide/>
     <router-view></router-view>
 </div>
 </template>
 
 <script>
-import header_client from '@/components/client/header-client'
+import headerBg from '@/components/client/headerBg';
+import menuSide   from  '@/components/client/menuSide';
     export default {
-        components:{header_client},
-        name: "index"
+        components:{headerBg,menuSide}
     }
 </script>
 

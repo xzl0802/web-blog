@@ -5,5 +5,12 @@ module.exports = {
         } else {
             // 为开发环境修改配置...
         }
+    },
+    devServer: {
+        overlay: {
+            warnings: false,
+            errors: false
+        },
+        lintOnSave: false
     }
 }

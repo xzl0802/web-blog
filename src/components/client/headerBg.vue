@@ -4,7 +4,7 @@
 </template>
 <script>
 export default {
-   name: 'header_client'   
+   name: 'headerBg'   
 }
 </script>
 <style scoped>
@@ -12,5 +12,6 @@ export default {
     background: url('~@/assets/header-bg.jpg')center center no-repeat;
     width: 100%;
     height: 100%;
+    background-size: cover;
 }
 </style>

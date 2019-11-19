@@ -116,7 +116,7 @@ svg {
   top: 10px;
 }
 .side__header {
-  background:  url("~@/assets/side-bg.gif") top/contain no-repeat;
+  background:  url("~@/assets/side-bg.gif");
   width: 100%;
   height: 239px;
   padding-top: 40px;

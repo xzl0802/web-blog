@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="side_menu">
-      <svg viewBox="0 0 32 32" width="100%" height="100%">
+    <div class="side_menu" v-show="!menuShow" @click="showMenuSide">
+      <svg viewBox="0 0 32 32" width="100%" height="100%" >
         <path
           d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"
         />
@@ -9,14 +9,14 @@
       <span>menu</span>
     </div>
     <div class="side_main">
-      <div class="side__panel">
+      <div class="side__panel" v-show="menuShow">
         <svg
           class="side__close ft__a"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
-          viewBox="0 0 20 20" >
+          viewBox="0 0 20 20"  @click="closeMenuSide" >
           <path
             d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"
           />
@@ -45,13 +45,26 @@
 </template>
 <script>
 export default {
-  name: "menuSide"
+  name: "menuSide",
+  data(){
+    return{
+     menuShow:false
+    }
+    
+  },methods: {
+      closeMenuSide(){ //关闭侧边栏
+       this.menuShow = false;
+      },
+      showMenuSide(){
+       this.menuShow = true; 
+      }
+    }
 };
 </script>
 <style scoped>
 .side_menu {
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   font-size: 12px;

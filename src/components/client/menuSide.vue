@@ -8,8 +8,9 @@
       </svg>
       <span>menu</span>
     </div>
-    <div class="side_main">
-      <div class="side__panel" v-show="menuShow">
+    <transition  name="fadeMenu">
+    <div class="side_main" v-show="menuShow">
+      <div class="side__panel" >
         <svg
           class="side__close ft__a"
           version="1.1"
@@ -38,9 +39,9 @@
         <div class="side__title">
           <span>ღゝ◡╹)ノ❤️</span>
         </div> -->
-     
       </div>
     </div>
+    </transition>
   </div>
 </template>
 <script>

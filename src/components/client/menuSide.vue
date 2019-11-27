@@ -62,11 +62,13 @@ export default {
 };
 </script>
 <style scoped>
-
-
+.side_menu:hover{
+opacity: 0.6;
+}
 .side_menu {
   position: fixed;
   z-index: 5;
+  opacity: 1;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   font-size: 12px;

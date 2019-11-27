@@ -8,8 +8,8 @@
       </svg>
       <span>menu</span>
     </div>
-    <transition  name="fadeMenu">
-    <div class="side_main" v-show="menuShow">
+
+    <div class="side_main  animated  rotateInDownLeft" v-show="menuShow">
       <div class="side__panel" >
         <svg
           class="side__close ft__a"
@@ -41,7 +41,6 @@
         </div> -->
       </div>
     </div>
-    </transition>
   </div>
 </template>
 <script>
@@ -63,6 +62,8 @@ export default {
 };
 </script>
 <style scoped>
+
+
 .side_menu {
   position: fixed;
   z-index: 5;
@@ -79,8 +80,6 @@ export default {
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  -webkit-transition: left 0.3s ease;
-  transition: left 0.3s ease;
 }
 svg {
   fill: currentColor;
@@ -95,13 +94,10 @@ svg {
 }
 .side_main {
   display: block;
-  opacity: 1;
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 3;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
   top: 0;
   left: 0;
 }
@@ -109,12 +105,6 @@ svg {
   width: 280px;
   height: 100vh;
   overflow: auto;
-  -webkit-animation-name: bounceOutLeft;
-  animation-name: bounceOutLeft;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
   position: fixed;
   left: 0;
   z-index: 4;

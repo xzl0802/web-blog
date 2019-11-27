@@ -93,14 +93,13 @@ svg {
   padding-left: 5px;
 }
 .side_main {
-  display: block;
   opacity: 1;
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 3;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+  -webkit-transition: all 2s ease;
+  transition: all 2s ease;
   top: 0;
   left: 0;
 }

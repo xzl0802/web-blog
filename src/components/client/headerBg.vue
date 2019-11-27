@@ -4,7 +4,15 @@
 </template>
 <script>
 export default {
-   name: 'headerBg'   
+   name: 'headerBg',
+   data(){
+       return{
+
+       }
+   },
+   mounted(){
+       
+   }   
 }
 </script>
 <style scoped>

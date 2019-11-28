@@ -7,7 +7,7 @@
 <script>
 import menuSide   from  './menuSide';
 export default {
-   name: 'headClient',
+   name: 'HeadClient',
     components:{menuSide},
    data(){
        return{
@@ -15,9 +15,7 @@ export default {
        }
    },
    methods:{
-    initCanvas(){//初始化canvas
-    
-    }
+  
    },
    mounted(){
 

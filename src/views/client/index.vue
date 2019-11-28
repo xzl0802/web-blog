@@ -1,6 +1,6 @@
 <template>
 <div class="client_layout">
-
+<Progress/>
 <headClient/>
 
 
@@ -11,9 +11,15 @@
 </template>
 
 <script>
-import headClient from    '@/components/client/header/index';
+import HeadClient from    '@/components/client/header/index';  //头部组件
+import Progress from   '@/components/client/progress';  //进度条组件
     export default {
-        components:{headClient}
+        components:{HeadClient,Progress},
+        data(){
+            return{
+                 percent: 0,
+            }
+        }
     }
 </script>
 <style scoped>

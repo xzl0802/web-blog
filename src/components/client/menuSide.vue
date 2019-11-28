@@ -8,8 +8,9 @@
       </svg>
       <span>menu</span>
     </div>
-    <div class="side_main">
-      <div class="side__panel" v-show="menuShow">
+
+    <div class="side_main  animated  rotateInDownLeft" v-show="menuShow">
+      <div class="side__panel" >
         <svg
           class="side__close ft__a"
           version="1.1"
@@ -38,7 +39,6 @@
         <div class="side__title">
           <span>ღゝ◡╹)ノ❤️</span>
         </div> -->
-     
       </div>
     </div>
   </div>
@@ -62,9 +62,13 @@ export default {
 };
 </script>
 <style scoped>
+.side_menu:hover{
+opacity: 0.6;
+}
 .side_menu {
   position: fixed;
   z-index: 5;
+  opacity: 1;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   font-size: 12px;
@@ -78,8 +82,6 @@ export default {
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  -webkit-transition: left 0.3s ease;
-  transition: left 0.3s ease;
 }
 svg {
   fill: currentColor;
@@ -93,13 +95,11 @@ svg {
   padding-left: 5px;
 }
 .side_main {
-  opacity: 1;
+  display: block;
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 3;
-  -webkit-transition: all 2s ease;
-  transition: all 2s ease;
   top: 0;
   left: 0;
 }
@@ -107,12 +107,6 @@ svg {
   width: 280px;
   height: 100vh;
   overflow: auto;
-  -webkit-animation-name: bounceOutLeft;
-  animation-name: bounceOutLeft;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
   position: fixed;
   left: 0;
   z-index: 4;

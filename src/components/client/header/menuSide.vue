@@ -25,7 +25,7 @@
 
         <div class="side__header">
           <a href="" rel="start">
-            <img class="side__logo" src="https://avatars2.githubusercontent.com/u/31478175?v=4" />
+            <img class="side__logo" src="" />
           </a>
 
           <!-- <div class="side__meta">
@@ -67,7 +67,7 @@ opacity: 0.6;
 }
 .side_menu {
   position: fixed;
-  z-index: 5;
+  z-index: 2;
   opacity: 1;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 3px;

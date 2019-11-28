@@ -18,130 +18,123 @@
     </style>
 </head>
 <body>
-<canvas class="rain"></canvas>
-
+<canvas id="canvas"></canvas>
 <script>
-var canvas = document.querySelector(".rain");//获得类（获得id用#rain）
-    ctx = canvas.getContext("2d");//拿到2d画笔
-var aRain = [];
-var wh = canvas.height = window.innerHeight;//不用css装饰来改变画布的大小，不能全屏。改变属性
-var ww = canvas.width = window.innerWidth;
-
-//监听器，改变大小后，画布跟着改变
-window.onresize=function () {
-    wh = canvas.height = window.innerHeight;
-    ww = canvas.width = window.innerWidth;
+var can = document.getElementById("canvas");
+//设置绘图环境
+var cxt = can.getContext("2d");
+//获取浏览器窗口的宽高
+var w = can.width = window.innerWidth;
+var h = can.height = window.innerHeight;
+//让画布的宽高跟随浏览器窗口的变化而变化
+window.onresize = function() {
+    w = can.width = window.innerWidth;
+    h = can.height = window.innerHeight;
+};
+//设置画笔颜色
+cxt.fillStyle = "aqua";
+//绘制矩形
+//cxt.fillRect(50,50,100,100);//绘制的坐标点：x y 宽 w 高 h
+//cxt.fill();填充方法(实心) cxt.stroke（）；触笔方法(空心)
+//cxt.rect(x,y,w,h); 规定矩形的路径
+//绘制圆 圆心坐标
+//cxt.arc(250,250,50,0,Math.PI*2,false);//圆心坐标：x y 半径 r
+// 从0度角绘制到360度(弧度值：Math.PI*角度/180)  逆时针
+//cxt.fill();
+//var x = 100,y = 0;
+//        setInterval(function(){
+//            y++;
+//            cxt.clearRect(0,0,w,h);//清除画布内容
+//            cxt.fillRect(x,y,2,35)
+//        },1000/60);
+/*     function move(){
+    y++;
+    cxt.clearRect(0,0,w,h);
+    cxt.fillRect(x,y,2,35);
+    requestAnimationFrame(move);//原生js的经动画
 }
+move();*/
 
-
-//获得一个最小值到最大值的一个随机数
-function random(min,max) {
-    return Math.random()*(max-min)+min;
-}
-
-//类似于java的类，构造方法
-function Rain() {
-
-}
-
-
-//基因，为rain添加属性和方法
-Rain.prototype={
-    
-    //初始化方法，初始位置速度与落下时圆的半径
-    init:function () {
-        this.x = random(0,ww);//最开始的x坐标与y坐标
+//面向对象
+var drops = [];
+// 创建雨滴对象
+function Drop() {}
+//添加对象方法
+Drop.prototype = {
+    init: function() { //初始化方法 设置每个雨滴的初始化属性
+        //设置坐标
+        this.x = random(0, w);
         this.y = 0;
-        this.h = random(0.8*wh,0.9*wh);//设置最后落地的距离，不能落出屏幕
-        this.r = 1; //最开始圆的半径
-        this.vr = 1;//半径增长速度
-        this.vY = random(4,5);//下落速度
+        //y方向的速度值
+        this.vy = random(4, 5);
+        //雨滴下落的最大高度
+        this.l = random(0.8 * h, 0.9 * h);
+        //波纹的初始半径
+        this.r = 1;
+        this.vr = 1; //半径增大的速度
+        //判断雨滴消失的透明度
+        this.a = 1; // =>0
+        this.va = 0.96; //透明度的变化系数
     },
-    
-    
-    //画方法
-    draw:function () {
-		
-        //当小于h时，画出雨滴（矩形）
-        if(this.y<this.h){
-            ctx.beginPath();//重新（抬笔）下笔
-            ctx.fillStyle="white";
-            // ctx.fillStyle="#31f7f7";
-            ctx.fillRect(this.x,this.y,4,10);
+    draw: function() { //绘制图形
+        if (this.y > this.l) { //雨滴下落到了指定位置 开始绘制圆形
+            cxt.beginPath(); //先开始路径
+            cxt.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+            cxt.strokeStyle = "rgba(0,255,255," + this.a + ")";
+            cxt.stroke();
+        } else { //绘制下落的雨滴
+            cxt.fillStyle = "rgb(0,255,255)";
+            cxt.fillRect(this.x, this.y, 2, 10);
         }
 
-        //反之画圆
-        else {
-            ctx.beginPath();
-            ctx.strokeStyle = "white";
-            // ctx.strokeStyle="#31f7f7";
-            ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
-            ctx.stroke();
-        }
-
+        this.update();
     },
-
-    
-    //移动函数
-    move: function () {
-        
-        //小于h时，加y实现移动
-        if(this.y<this.h){
-            this.y+=this.vY;
-        }
-
-        
-        //实现爆炸效果
-        else {
-			
-            //小于最大半径，画空心的圆
-            if(this.r<80){
-                this.r+=this.vr;
-            }
-			
-            //调用init函数，（结束生命后，又重新开始,将自己回到天上，天上随机位置，等待再一次的调用）
-            else {
-                this.init();
+    update: function() { //更新坐标位置
+        if (this.y < this.l) {
+            this.y += this.vy
+        } else { //雨滴下落到了指定位置 开始绘制波纹
+            if (this.a > 0.03) {
+                this.r += this.vr;
+                if (this.r > 50) {
+                    this.a *= this.va;
+                }
+            } else {
+                //重新初始化
+                this.init()
             }
 
         }
-
-        
-        //提出画的函数，使代码更精简
-        this.draw();
-
     }
+};
+//新建一个雨滴实例化对象
+//var drop = new Drop();
+//drop.init();// 初始化
+//drop.draw();//绘制
+for (var i = 0; i < 30; i++) {
+    setTimeout(function() {
+        var drop = new Drop();
+        drop.init();
+        drops.push(drop);
+    }, i * 300)
+
 }
-
-
-//创造雨滴
-function createRain(num) {
-    for(var i=0;i<num;i++){
-		
-        //间隔多少时间执行一次某个函数（使雨滴逐渐出现而不是一下出现），并把它存入数组，方便后面的操作
-        setTimeout(function () {
-            var rain = new Rain();
-            rain.init();
-            rain.draw();
-            aRain.push(rain);
-        },300*i); //ms
-
-
+//console.log(drops)
+function move() {
+    //cxt.clearRect(0,0,w,h);
+    //先复制透明层再绘制雨滴 雨滴就把先绘制的透明层覆盖 下一次绘制透明层
+    //就会把之前绘制的雨滴覆盖 若干的透明层叠加就会越来越不透明
+    cxt.fillStyle = "rgba(0,0,0,0.1)";
+    cxt.fillRect(0, 0, w, h);
+    for (var k = 0; k < drops.length; k++) {
+        drops[k].draw();
     }
+    requestAnimationFrame(move);
 }
-
-
-//开始
-createRain(60);
-
-//创建雨滴，雨滴创建出的时间不是相同，进入下一个函数
-//开始取出数组中的雨滴，调用move方法，开始画
-//结束之后重置自己的属性，再次等待被调用，实现无穷的雨
-
-
-//间隔多少时间就执行某个函数（与setTimeout区别，一直执行，不会停止）
-
-
+move();
+//生成随机数的方法
+function random(min, max) {
+    return Math.random() * (max - min) + min; //min - max之间的随机数
+}
 </script>
 </body>
 </html>

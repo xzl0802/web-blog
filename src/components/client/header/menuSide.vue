@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="menuMain">
     <div class="side_menu" v-show="!menuShow" @click="showMenuSide">
       <svg viewBox="0 0 32 32" width="100%" height="100%" >
         <path
@@ -62,6 +62,9 @@ export default {
 };
 </script>
 <style scoped>
+.menuMain{
+  margin-top: -5px;
+}
 .side_menu:hover{
 opacity: 0.6;
 }

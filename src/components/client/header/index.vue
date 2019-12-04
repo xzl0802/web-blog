@@ -1,14 +1,16 @@
 <template>
 <div class="header_content">
+    <Progress/>
 <menuSide/>
 </div>
 
 </template>
 <script>
 import menuSide   from  './menuSide';
+import Progress from   '@/components/client/progress';  //进度条组件
 export default {
    name: 'HeadClient',
-    components:{menuSide},
+    components:{menuSide,Progress},
    data(){
        return{
 

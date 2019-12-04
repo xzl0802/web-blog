@@ -1,6 +1,7 @@
 <template>
+<div class="main"> 
 <div class="client_layout">
-<Progress/>
+
 <headClient/>
 
 
@@ -8,13 +9,14 @@
 <router-view></router-view>
 </div>
 </div>
+</div>
 </template>
 
 <script>
 import HeadClient from    '@/components/client/header/index';  //头部组件
-import Progress from   '@/components/client/progress';  //进度条组件
+
     export default {
-        components:{HeadClient,Progress},
+        components:{HeadClient},
         data(){
             return{
                  percent: 0,
@@ -23,9 +25,9 @@ import Progress from   '@/components/client/progress';  //进度条组件
     }
 </script>
 <style scoped>
+
 .client_layout{
-    width: 100%;
-    min-height: 100%;
+    width: 100%;    
     display: flex;
     display: -webkit-flex;
     -webkit-box-orient: vertical;

@@ -26,6 +26,7 @@ export default {
 }
 body html{
   margin: 0;
+  padding: 0;
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
   background-color: #fff;
 }

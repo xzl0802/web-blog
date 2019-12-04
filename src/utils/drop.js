@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+/*
+ * @Author: xzl 
+ * @Date: 2019-12-04 14:55:26 
+ * @Last Modified by: xzl
+ * @Last Modified time: 2019-12-04 15:43:38
+ */
 
-    <style>
-        body{
-            margin: 0;
-        }
-        canvas{
-            display: block;
-            /*
-            需使用block，其他有行间距
-            */
-   
-        }
-    </style>
-</head>
-<body>
-<canvas id="canvas"></canvas>
-<script>
-var can = document.getElementById("canvas");
+export function dropCanvas(id) {   //获取token
+var can = document.getElementById(id);
 //设置绘图环境
 var cxt = can.getContext("2d");
 //获取浏览器窗口的宽高
@@ -73,17 +59,17 @@ Drop.prototype = {
         this.r = 1;
         this.vr = 1; //半径增大的速度
         //判断雨滴消失的透明度
-        this.a = 1; // =>0
+        this.a = 0.1; // =>0
         this.va = 0.96; //透明度的变化系数
     },
     draw: function() { //绘制图形
         if (this.y > this.l) { //雨滴下落到了指定位置 开始绘制圆形
             cxt.beginPath(); //先开始路径
             cxt.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-            cxt.strokeStyle = "rgba(0,255,255," + this.a + ")";
+            cxt.strokeStyle = "rgba(255,255,255," + this.a + ")";
             cxt.stroke();
         } else { //绘制下落的雨滴
-            cxt.fillStyle = "rgb(0,255,255)";
+            cxt.fillStyle = "rgba(255,255,255)";
             cxt.fillRect(this.x, this.y, 2, 10);
         }
 
@@ -115,7 +101,7 @@ for (var i = 0; i < 30; i++) {
         var drop = new Drop();
         drop.init();
         drops.push(drop);
-    }, i * 300)
+    }, i * 200)
 
 }
 //console.log(drops)
@@ -123,7 +109,7 @@ function move() {
     //cxt.clearRect(0,0,w,h);
     //先复制透明层再绘制雨滴 雨滴就把先绘制的透明层覆盖 下一次绘制透明层
     //就会把之前绘制的雨滴覆盖 若干的透明层叠加就会越来越不透明
-    cxt.fillStyle = "rgba(0,0,0,0.1)";
+    cxt.fillStyle = "rgba(0,0,0,0.2)";
     cxt.fillRect(0, 0, w, h);
     for (var k = 0; k < drops.length; k++) {
         drops[k].draw();
@@ -131,11 +117,9 @@ function move() {
     requestAnimationFrame(move);
 }
 move();
-//生成随机数的方法
+
+}
+
 function random(min, max) {
     return Math.random() * (max - min) + min; //min - max之间的随机数
 }
-</script>
-</body>
-</html>
-

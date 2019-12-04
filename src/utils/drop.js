@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-04 14:55:26 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-04 15:40:46
+ * @Last Modified time: 2019-12-04 15:43:38
  */
 
 export function dropCanvas(id) {   //获取token
@@ -66,7 +66,7 @@ Drop.prototype = {
         if (this.y > this.l) { //雨滴下落到了指定位置 开始绘制圆形
             cxt.beginPath(); //先开始路径
             cxt.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-            cxt.strokeStyle = "rgba(0,255,255," + this.a + ")";
+            cxt.strokeStyle = "rgba(255,255,255," + this.a + ")";
             cxt.stroke();
         } else { //绘制下落的雨滴
             cxt.fillStyle = "rgba(255,255,255)";

@@ -16,7 +16,7 @@ export default {
 <style scoped>
 .progress_div{
     position: fixed;
-    top:-15px; 
+    top:-16px; 
     width: 100%;
   
 }

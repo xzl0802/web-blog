@@ -1,16 +1,18 @@
 <template>
 <div class="header_content">
-    <Progress/>
+<Progress/>
 <menuSide/>
+<CanvasBg/>
 </div>
 
 </template>
 <script>
 import menuSide   from  './menuSide';
 import Progress from   '@/components/client/progress';  //进度条组件
+import CanvasBg  from '@/components/client/header/canvas'; // canvas 组件
 export default {
    name: 'HeadClient',
-    components:{menuSide,Progress},
+    components:{menuSide,Progress,CanvasBg},
    data(){
        return{
 

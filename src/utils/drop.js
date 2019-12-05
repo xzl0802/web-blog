@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-04 14:55:26 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-04 15:43:38
+ * @Last Modified time: 2019-12-05 13:23:02
  */
 
 export function dropCanvas(id) {   //获取token

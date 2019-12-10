@@ -8,6 +8,7 @@
 <div class="main_content">
 <router-view></router-view>
 </div>
+   <ClientFooter/>
 </div>
 </div>
 </template>
@@ -16,9 +17,9 @@
 import HeadClient from    '@/components/client/header/index';  //头部组件
 import menuSide from "@/components/client/menuSide";
 import Progress from "@/components/client/progress"; //进度条组件
-
+import ClientFooter from  "@/components/client/footer";
     export default {
-        components:{HeadClient,menuSide, Progress,},
+        components:{HeadClient,menuSide, Progress,ClientFooter},
         data(){
             return{
                  percent: 0,

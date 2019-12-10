@@ -11,8 +11,8 @@ import CanvasBg from "@/components/client/header/canvas"; // canvas 组件
 import HeaderTitle  from  "@/components/client/header/title";
 export default {
   name: "HeadClient",
-  components: {CanvasBg },
-  components: { menuSide, Progress, CanvasBg,HeaderTitle },
+
+  components: { CanvasBg,HeaderTitle },
   data() {
     return {};
   },

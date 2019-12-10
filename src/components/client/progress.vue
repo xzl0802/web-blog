@@ -18,6 +18,6 @@ export default {
     position: fixed;
     top:-16px; 
     width: 100%;
-  
+
 }
 </style>

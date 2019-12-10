@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-04 14:55:26 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-05 13:23:02
+ * @Last Modified time: 2019-12-10 14:52:51
  */
 
 export function dropCanvas(id) {   //获取token
@@ -18,29 +18,7 @@ window.onresize = function() {
     h = can.height = window.innerHeight;
 };
 //设置画笔颜色
-cxt.fillStyle = "aqua";
-//绘制矩形
-//cxt.fillRect(50,50,100,100);//绘制的坐标点：x y 宽 w 高 h
-//cxt.fill();填充方法(实心) cxt.stroke（）；触笔方法(空心)
-//cxt.rect(x,y,w,h); 规定矩形的路径
-//绘制圆 圆心坐标
-//cxt.arc(250,250,50,0,Math.PI*2,false);//圆心坐标：x y 半径 r
-// 从0度角绘制到360度(弧度值：Math.PI*角度/180)  逆时针
-//cxt.fill();
-//var x = 100,y = 0;
-//        setInterval(function(){
-//            y++;
-//            cxt.clearRect(0,0,w,h);//清除画布内容
-//            cxt.fillRect(x,y,2,35)
-//        },1000/60);
-/*     function move(){
-    y++;
-    cxt.clearRect(0,0,w,h);
-    cxt.fillRect(x,y,2,35);
-    requestAnimationFrame(move);//原生js的经动画
-}
-move();*/
-
+cxt.fillStyle = 'rgba(255, 255, 255, 1)';
 //面向对象
 var drops = [];
 // 创建雨滴对象
@@ -109,7 +87,7 @@ function move() {
     //cxt.clearRect(0,0,w,h);
     //先复制透明层再绘制雨滴 雨滴就把先绘制的透明层覆盖 下一次绘制透明层
     //就会把之前绘制的雨滴覆盖 若干的透明层叠加就会越来越不透明
-    cxt.fillStyle = "rgba(0,0,0,0.2)";
+    cxt.fillStyle = "rgba(0,0,0,0.1)";
     cxt.fillRect(0, 0, w, h);
     for (var k = 0; k < drops.length; k++) {
         drops[k].draw();

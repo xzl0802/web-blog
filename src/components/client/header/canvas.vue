@@ -38,7 +38,7 @@ export default {
  
 }
 #canvas{
-    opacity: 0.1;
+    opacity: 0.15;
     width: 100%;
   height: 100%;
 }

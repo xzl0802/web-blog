@@ -4,7 +4,7 @@ import Vue from 'vue';
 import  Router from  'vue-router';
 
 Vue.use(Router)
-
+import  clientLayout  from '@/views/client/index'; //首页布局
 export const routerMap  =[   {
     path: '/404',
     name: "404",
@@ -13,8 +13,15 @@ export const routerMap  =[   {
     hidden: true
 },
     {path:"/",
-    name:"index",
-    component:()=>import ('@/views/client/index')}
+    component: clientLayout,
+    children:[
+        {
+         path:"/",
+         name:"首页",
+         component:()=>import("@/views/client/list")   
+        }
+    ]    
+}
 ]
 
 export  default  new Router(

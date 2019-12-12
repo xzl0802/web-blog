@@ -14,6 +14,7 @@ export default {
 <style scoped>
 .footer_content {
   width: 100%;
+  z-index: 2;
 }
 .footerImg {
   width: 1000px;

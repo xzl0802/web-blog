@@ -36,9 +36,10 @@ import ClientFooter from  "@/components/client/footer";
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-direction: column;
+    background-color: #F4F8FB;
 }
 
-.main_content{
+/* .main_content{
     min-height: 500px;
-}
+} */
 </style>

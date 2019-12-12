@@ -14,17 +14,34 @@
 </template>
 
 <script>
-import HeadClient from    '@/components/client/header/index';  //头部组件
+import HeadClient from   '@/components/client/header/index';  //头部组件
 import menuSide from "@/components/client/menuSide";
 import Progress from "@/components/client/progress"; //进度条组件
 import ClientFooter from  "@/components/client/footer";
+import {countIp} from "@/api/client"
     export default {
         components:{HeadClient,menuSide, Progress,ClientFooter},
         data(){
             return{
                  percent: 0,
             }
-        }
+        },
+        methods:{
+
+        },mounted() {
+      //等待js都加载完之后，调用countip方法
+      window.onload=function (){
+       if(process.env.NODE_ENV === 'development'){
+         return false;  //当为开发环境时不记录访问Ip
+       }
+       recondIp(returnCitySN).then(response => {
+      
+        })
+        .catch(err => {
+      
+        });
+      }
+    },
     }
 </script>
 <style scoped>

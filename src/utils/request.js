@@ -2,12 +2,12 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-12 14:26:57
+ * @Last Modified time: 2019-12-12 16:27:42
  */
 import axios from 'axios';
- 
+ console.log(process.env.BASE_API)
 const service = axios.create({
-    baseURL:  process.env.baseURL,   // 请求接口地址
+    baseURL:  '/',   // 请求接口地址
     timeout:50000
   });
 

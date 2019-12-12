@@ -1,5 +1,9 @@
 <template>
-    <div></div>
+    <div>
+       <a-layout id="components-layout-demo-custom-trigger">
+       
+       </a-layout>   
+    </div>
 </template>
 
 <script>

@@ -2,12 +2,12 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-12 16:27:42
+ * @Last Modified time: 2019-12-13 10:17:57
  */
 import axios from 'axios';
- console.log(process.env.BASE_API)
+const baseUrl = process.env.NODE_ENV === 'production' ? 'http://106.13.177.99:7001/' : 'http://localhost:7001'
 const service = axios.create({
-    baseURL:  '/',   // 请求接口地址
+    baseURL:baseUrl,
     timeout:50000
   });
 

@@ -2,10 +2,10 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-13 10:17:57
+ * @Last Modified time: 2019-12-16 09:38:46
  */
 import axios from 'axios';
-const baseUrl = process.env.NODE_ENV === 'production' ? 'http://106.13.177.99:7001/' : 'http://localhost:7001'
+const baseUrl = process.env.NODE_ENV === 'production' ? 'http://106.13.177.99:7001/' : 'http://localhost:7001';// 定义请求接口
 const service = axios.create({
     baseURL:baseUrl,
     timeout:50000

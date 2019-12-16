@@ -5,6 +5,7 @@ import  Router from  'vue-router';
 
 Vue.use(Router)
 import  clientLayout  from '@/views/client/index'; //首页布局
+import  adminLayout  from '@/views/admin/index';//管理端布局
 export const routerMap  =[   {
     path: '/404',
     name: "404",
@@ -21,6 +22,9 @@ export const routerMap  =[   {
          component:()=>import("@/views/client/list")   
         }
     ]    
+},{
+    path:"/admin",
+    component:adminLayout
 }
 ]
 

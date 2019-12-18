@@ -24,8 +24,9 @@ export const routerMap = [{
     }, {
         path: "/admin",
         component: adminLayout
-    }, {
-        path: "admin/login",
+    },
+     {
+        path: "/admin/login",
         name: "login",
         component: () => import("@/views/admin/login/login"),
         hidden: true

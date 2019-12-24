@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-10 16:21:54 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-16 16:13:30
+ * @Last Modified time: 2019-12-24 14:07:39
  */
 //路由跳转权限控制
 import router from  '@/router/index';
@@ -13,12 +13,15 @@ const whiteList= ['/admin/login']; //白名单
      let authToken  =getToken();
      if(beforePath.indexOf("/admin") > -1){ //管理端登录拦截
       if(authToken){ //当登录token 存在时
-        if (to.path === '/admin/login') {  //当已登录重定向到admin
-          next({ path: '/admin' })
-        }  
+        if (to.path.indexOf('/admin/login') > -1) {  //当已登录重定向到admin
+          next({ path: '/admin/index' })
+        } 
+        else{
+          next(); 
+        }
       }
       else{
-        if(whiteList.indexOf(beforePath) >-1){  //当前路由存在于白名单时放行
+        if(whiteList.indexOf(beforePath) > -1){  //当前路由存在于白名单时放行
         next();
         }
         else{

@@ -23,7 +23,13 @@ export const routerMap = [{
         }]
     }, {
         path: "/admin",
-        component: adminLayout
+        component: adminLayout,
+        redirect: '/admin/index',
+        children: [{
+            path: "/admin/index",
+            name: "dashborad",
+            component: () => import("@/views/admin/dashboard/index")
+        }]
     },
      {
         path: "/admin/login",

@@ -60,7 +60,7 @@ export default {
     this.loginForm.validateFields((err, values) => {
         if (!err) { //当验证通过时
           this.$store.dispatch('Login', values).then(res => {
-            this.$router.push({ path: '/admin' })
+            this.$router.push({ path: '/admin/' })
           })
         }
       });

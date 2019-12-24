@@ -1,6 +1,6 @@
 <template>
     <div class="leftSide">
-    <a-layout-sider :trigger="null" collapsible v-model="collapsed" class="leftSideMain">
+    <a-layout-sider :trigger="null" collapsible v-model="isCollapsed" class="leftSideMain">
       <div class="logo" />
       <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
         <a-menu-item key="1">
@@ -24,9 +24,13 @@ export default {
      name:"LeftSide",
      data(){
          return{
-         collapsed:false
          }
      },
+      computed:{
+       isCollapsed(){
+       return this.$store.state.app.collapsed;
+     }
+  },
      methods:{
 
      }

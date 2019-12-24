@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-20 14:38:24 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-24 13:49:28
+ * @Last Modified time: 2019-12-24 16:15:33
  */
 import {getToken,setToken,removeToken} from '@/utils/auth';
 import {adminLogin } from '@/api/admin';
@@ -17,7 +17,6 @@ const user = {
     },
     actions:{
     Login({commit},userInfo){
-        console.log(userInfo,'111')
             return new Promise((resolve, reject) => {
                 adminLogin(userInfo).then(response => {
                     if(response.code == 200){
@@ -32,6 +31,8 @@ const user = {
             })
         
           },
+
+          
     
     }
 

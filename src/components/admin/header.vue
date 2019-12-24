@@ -2,8 +2,8 @@
     <a-layout-header style="background: #fff; padding: 0">
         <a-icon
           class="trigger"
-          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-          @click="()=> collapsed = !collapsed"
+          :type="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="changeCollapsed"
         />
       </a-layout-header>  
 </template>
@@ -12,8 +12,21 @@ export default {
     name:"AdminHeader",
     data(){
         return{
-          collapsed:false  
+         
         }
+    },
+    computed:{
+    isCollapsed(){
+      return this.$store.state.app.collapsed  
+    }
+    },
+    methods:{
+     changeCollapsed(){ //更改侧边栏状态
+       this.$store.dispatch('changeCollapsedVal', !this.$store.state.app.collapsed)
+     }
+    },
+    mounted(){
+    
     }
 }
 </script>

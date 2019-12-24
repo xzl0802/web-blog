@@ -2,17 +2,19 @@
  * @Author: xzl 
  * @Date: 2019-12-17 13:40:08 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-23 15:02:03
+ * @Last Modified time: 2019-12-24 11:07:14
  */
-
-import Vue from  "vue";
+import Vue from 'vue'
 import Vuex from 'vuex';
 import user from './modules/user'
+import getters from './getters'
+
+Vue.use(Vuex);
 const store  = new Vuex.Store({
    modules:{
       user      
  },
-   getters 
+ getters
 })
 
 export default store;

@@ -4,13 +4,13 @@ import App from './App';
 import 'ant-design-vue/dist/antd.css';
 // import animated from 'animate.css'
 import router from  '@/router'
+import store  from  './store'
 import "@/utils/permition"
 
-
-Vue.config.productionTip = false;
 
 Vue.use(Antd);
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')

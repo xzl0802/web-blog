@@ -8,6 +8,7 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
 module.exports = {
   productionSourceMap: false,
+  productionTip = false,
     configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {    //添加gzip 压缩
             config.plugins.push(new CompressionWebpackPlugin({

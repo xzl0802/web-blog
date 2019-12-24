@@ -2,9 +2,10 @@
  * @Author: xzl 
  * @Date: 2019-12-20 14:38:24 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-23 15:03:08
+ * @Last Modified time: 2019-12-24 13:20:38
  */
 import {getToken,setToken,removeToken} from '@/utils/auth';
+import {adminLogin } from '@/api/admin';
 const user = {
     state: {
         token: getToken()
@@ -14,10 +15,21 @@ const user = {
     state.token =token;
     }
     },
-    actions: {
-    Login:()=>{
+    actions:{
+    Login({commit},userInfo){
+            return new Promise((resolve, reject) => {
+                adminLogin(userInfo).then(response => {
+                    if(response.code == 200){
+                    commit('SET_TOKEN', response.data.token);
+                    resolve()
+                  }
+                  }).catch(error => {
+                    reject(error)
+                  }) 
+            
+            })
         
-    }
+          },
     
     }
 

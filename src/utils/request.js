@@ -2,31 +2,55 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-16 09:38:46
+ * @Last Modified time: 2019-12-24 13:33:54
  */
 import axios from 'axios';
+import {message } from 'ant-design-vue';
 const baseUrl = process.env.NODE_ENV === 'production' ? 'http://106.13.177.99:7001/' : 'http://localhost:7001';// 定义请求接口
 const service = axios.create({
     baseURL:baseUrl,
     timeout:50000
   });
 
-  // 添加请求拦截器
-  service.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
-    return config;
-  }, function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
-  });
-
-// 添加响应拦截器
-service.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-    return response;
-  }, function (error) {
-    // 对响应错误做点什么
-    return Promise.reject(error);
-  });
-
+  // request拦截器
+  service.interceptors.request.use(
+    config => {
+      // if (store.getters.token) {
+      //   config.headers['authorization'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+      // }
+      return config
+    },
+    error => {
+      // Do something with request error
+      console.log(error) // for debug
+      Promise.reject(error)
+    }
+  )
+  
+  // response 拦截器
+  service.interceptors.response.use(
+    response => {
+      /**
+       * code为非20000是抛错 可结合自己业务进行修改
+       */
+      const res = response.data
+      if (res.code !== 200) {
+      
+        // 50008:非法的token;  500010//非法请求  50012:Token登录过期;  50014:Token 过期了;
+        if (res.code === 50008 || res.code ===500010  ||  res.code === 50012 || res.code === 50014) {
+       
+        }
+        return Promise.reject('error')
+      } else {
+        return response.data
+      }
+    },
+    error => {
+      message.error('错误：'+error);  //提示请求错误
+      console.log('err' + error) // for debug
+      return Promise.reject(error)
+    }
+  )
+  
   export default service
+  

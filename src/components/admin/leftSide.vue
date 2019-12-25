@@ -24,6 +24,7 @@ export default {
      name:"LeftSide",
      data(){
          return{
+           routes:this.$router.options.routes
          }
      },
       computed:{
@@ -32,7 +33,10 @@ export default {
      }
   },
      methods:{
-
+      
+     },
+     mounted(){
+      console.log(this.$router.options.routes,)
      }
 }
 </script>

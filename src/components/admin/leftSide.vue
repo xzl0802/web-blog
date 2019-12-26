@@ -2,13 +2,13 @@
     <div class="leftSide">
     <a-layout-sider :trigger="null" collapsible v-model="isCollapsed" class="leftSideMain">
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']"  :defaultOpenKeys="['1']">
+      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="[1]"  :defaultOpenKeys="[1]">
         <template v-for="(item,index) in routes">
         <a-menu-item v-show="!item.hidden"  v-if="!item.children" :key="index+1">
            <a-icon :type=" item.meta.icon" />
           <span>{{item.meta.title}}</span>
         </a-menu-item>
-        <sub-menu v-else :menu-info="item" :key="index" />
+        <sub-menu v-else :menu-info="item" :key="index+1" />
       </template>
       </a-menu>
     </a-layout-sider>  

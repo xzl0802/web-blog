@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-24 13:43:33
+ * @Last Modified time: 2019-12-26 16:29:32
  */
 import axios from 'axios';
 import {message } from 'ant-design-vue';
@@ -39,7 +39,7 @@ const service = axios.create({
       const res = response.data;
       console.log(res,'1221')
       if (res.code !== 200) {
-         return message.warning('提示：'+res.message);
+          message.warning('提示：'+res.message);
         // 50008:非法的token;  500010//非法请求  50012:Token登录过期;  50014:Token 过期了;
         if (res.code === 50008 || res.code ===500010  ||  res.code === 50012 || res.code === 50014) {
        

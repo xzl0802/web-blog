@@ -2,41 +2,53 @@
     <div class="leftSide">
     <a-layout-sider :trigger="null" collapsible v-model="isCollapsed" class="leftSideMain">
       <div class="logo" />
-      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']">
-        <a-menu-item key="1">
-          <a-icon type="user" />
-          <span>nav 1</span>
+      <a-menu theme="dark" mode="inline" :defaultSelectedKeys="['1']"  :defaultOpenKeys="['1']">
+        <template v-for="(item,index) in routes">
+        <a-menu-item v-show="!item.hidden"  v-if="!item.children" :key="index+1">
+           <a-icon :type=" item.meta.icon" />
+          <span>{{item.meta.title}}</span>
         </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span>nav 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span>nav 3</span>
-        </a-menu-item>
+        <sub-menu v-else :menu-info="item" :key="index" />
+      </template>
       </a-menu>
     </a-layout-sider>  
     </div>
 </template>
 <script>
+import SubMenu from './SubMenu';
 export default {
      name:"LeftSide",
+       components: {
+      'sub-menu': SubMenu,
+    },
      data(){
          return{
-           routes:this.$router.options.routes
+     
          }
      },
       computed:{
        isCollapsed(){
        return this.$store.state.app.collapsed;
-     }
+     },
+      routes(){
+       let routes =this.$router.options.routes;  //管理端界面展示路由修改
+       let renderRoutes =[];
+       if(routes.length>0){
+         routes.forEach(element => {
+           if(element.meta.type === 'admin' && element.children){
+            renderRoutes=element.children; 
+           }
+         });
+       } 
+        return renderRoutes;
+      }
   },
      methods:{
       
      },
      mounted(){
-      console.log(this.$router.options.routes)
+           console.log(this.routes)
+  
      }
 }
 </script>

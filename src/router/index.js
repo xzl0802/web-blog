@@ -59,7 +59,7 @@ export const adminRouterMap =[{
                 path:"/admin/article/editor",
                 component:( )=> import("@/views/admin/article/editor"),
                 hidden:true,
-                meta:{title:"文章管理",icon: 'read', type: 'admin'}  
+                meta:{title:"修改",icon: 'read', type: 'admin'}  
              },
              {
                 path:"/admin/article/label",
@@ -86,3 +86,9 @@ export default new Router({
 
     routes: routes
 })
+
+// //解决路由跳转问题
+// const routerPush = Router.prototype.push;
+// Router.prototype.push = function push(location) {
+//   return routerPush.call(this, location).catch(error=> error)
+// }

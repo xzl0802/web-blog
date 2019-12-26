@@ -4,9 +4,10 @@
       <div class="logo" />
       <a-menu theme="dark" mode="inline" :defaultSelectedKeys="[1]"  :defaultOpenKeys="[1]">
         <template v-for="(item,index) in routes">
-        <a-menu-item v-show="!item.hidden"  v-if="!item.children" :key="index+1">
+        <a-menu-item v-show="!item.hidden"  v-if="!item.children" :key="index+1"  @click="menuClick(item.path)">
            <a-icon :type=" item.meta.icon" />
           <span>{{item.meta.title}}</span>
+          <router-link :to="item.path"></router-link>
         </a-menu-item>
         <sub-menu v-else :menu-info="item" :key="index+1" />
       </template>
@@ -31,11 +32,11 @@ export default {
        return this.$store.state.app.collapsed;
      },
       routes(){
-       let routes =this.$router.options.routes;  //管理端界面展示路由修改
+       let routes =this.$router.options.routes;  //管理端界面展示路由
        let renderRoutes =[];
        if(routes.length>0){
          routes.forEach(element => {
-           if(element.meta.type === 'admin' && element.children){
+           if(element.meta.type === 'admin' && element.children){  //获取管理端展示路由
             renderRoutes=element.children; 
            }
          });
@@ -44,10 +45,11 @@ export default {
       }
   },
      methods:{
-      
+      menuClick(e){ //路由跳转
+      this.$router.push(e);
+      }
      },
      mounted(){
-           console.log(this.routes)
   
      }
 }

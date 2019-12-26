@@ -25,11 +25,38 @@ export const routerMap = [{
         path: "/admin",
         component: adminLayout,
         redirect: '/admin/index',
+        hidden:true,
         children: [{
             path: "/admin/index",
             name: "dashborad",
-            component: () => import("@/views/admin/dashboard/index")
-        }]
+            component: () => import("@/views/admin/dashboard/index"),
+         meta: { title: 'dashboard', icon: 'home', type: 'admin' }
+        },
+        {
+         path:"/admin/article",
+         redirect:"/admin/article/list",
+         hidden:true,
+         children:[
+             {
+                 path:"/admin/article/list",
+                 component:( )=> import("@/views/admin/article/list"),
+                 meta:{title:"文章管理",icon: 'read', type: 'admin'}
+             },
+             {
+                path:"/admin/article/editor",
+                component:( )=> import("@/views/admin/article/editor"),
+                hidden:true,
+                meta:{title:"文章管理",icon: 'read', type: 'admin'}  
+             },
+             {
+                path:"/admin/article/label",
+                component:( )=> import("@/views/admin/article/label"),
+                hidden:true,
+                meta:{title:"标签管理",icon: 'tags', type: 'admin'}  
+             }
+         ]   
+        }
+        ]
     },
      {
         path: "/admin/login",

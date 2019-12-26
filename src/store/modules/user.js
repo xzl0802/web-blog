@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-20 14:38:24 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-26 16:32:50
+ * @Last Modified time: 2019-12-26 16:37:34
  */
 import {
   getToken,
@@ -17,6 +17,7 @@ const user = {
     token: getToken(),
     role: "",
     name: "",
+    avatar:"",
   },
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -28,6 +29,9 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name;
     },
+    SET_AVATAR:(state,avatar) =>{
+      state.avatar = avatar;
+    }
   },
   actions: {
     Login({
@@ -64,6 +68,7 @@ const user = {
           if (response.code == 200) {    
             commit('SET_ROLE', response.data.role);
             commit('SET_NAME', response.data.name);
+            commit('SET_AVATAR', response.data.avatar);
             resolve()
           }
         }).catch(error => {

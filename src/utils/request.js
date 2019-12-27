@@ -2,10 +2,10 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-26 16:29:32
+ * @Last Modified time: 2019-12-27 10:10:53
  */
 import axios from 'axios';
-import {message } from 'ant-design-vue';
+import {message,Modal} from 'ant-design-vue';
 import store from '@/store';
 import { getToken } from '@/utils/auth';
 
@@ -37,13 +37,26 @@ const service = axios.create({
        * code为非20000是抛错 可结合自己业务进行修改
        */
       const res = response.data;
-      console.log(res,'1221')
       if (res.code !== 200) {
-          message.warning('提示：'+res.message);
-        // 50008:非法的token;  500010//非法请求  50012:Token登录过期;  50014:Token 过期了;
-        if (res.code === 50008 || res.code ===500010  ||  res.code === 50012 || res.code === 50014) {
-       
+          //非法请求  50012:Token登录过期;
+        if (res.code === 50014 || res.code ===50012 ) {
+        return Modal.confirm({
+            title: res.message,
+            content: h => <div style="color:red;">登录过期,请重新登录</div>,
+            okText: '退出',
+            cancelText: '取消',
+            onOk() {
+              store.dispatch('LoginOut').then(() => {
+                location.reload() // 为了重新实例化vue-router对象 避免bug
+              })
+            },
+            onCancel() {
+              
+            },
+            class: 'test',
+          });
         }
+        message.warning('提示：'+res.message);
         return Promise.reject('error')
       } else {
         return response.data

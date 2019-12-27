@@ -67,6 +67,27 @@ export const adminRouterMap =[{
                 meta:{title:"标签管理",icon: 'tags', type: 'admin'}  
              }
          ]   
+        },
+        {
+         path:"/admin/article",
+         redirect:"/admin/system/access",
+         hidden:true,
+         meta: { title: '系统管理', icon: 'setting', type: 'admin' },
+         children:[
+             {
+                 path:"/admin/system/access",
+                 component:( )=> import("@/views/admin/system/access"),
+                 hidden: false,
+                 meta:{title:"访问统计",icon: 'read', type: 'admin'}
+             },
+         
+             {
+                path:"/admin/system/user",
+                component:( )=> import("@/views/admin/article/label"),
+                hidden: false,
+                meta:{title:"用户管理",icon: 'tags', type: 'admin'}  
+             }
+         ]   
         }
         ]
     },

@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:13:46 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-27 10:10:53
+ * @Last Modified time: 2019-12-27 10:21:31
  */
 import axios from 'axios';
 import {message,Modal} from 'ant-design-vue';
@@ -53,7 +53,6 @@ const service = axios.create({
             onCancel() {
               
             },
-            class: 'test',
           });
         }
         message.warning('提示：'+res.message);

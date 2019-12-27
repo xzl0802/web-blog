@@ -4,22 +4,22 @@
        <LeftSide/>
        <a-layout>
           <AdminHeader/>
-          <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
+          <a-layout-content  :style="{ margin: '10px', padding: '10px', background: '#fff', minHeight: '280px' }">
+      <Breadcrumb/>
      <router-view/> 
       </a-layout-content> 
-           </a-layout> 
-       </a-layout>   
+       </a-layout> 
+      </a-layout>   
     </div>
 </template>
 
 <script>
 import  LeftSide from '@/components/admin/leftSide';//左侧菜单
 import  AdminHeader  from '@/components/admin/header';//头部
+import Breadcrumb    from  '@/components/admin/breadcrumb'// 面包屑
     export default {
         name: "index",
-        components:{LeftSide,AdminHeader}
+        components:{LeftSide,AdminHeader,Breadcrumb}
     }
 </script>
 

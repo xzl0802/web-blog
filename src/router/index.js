@@ -34,14 +34,13 @@ export const adminRouterMap =[{
         path: "/admin",
         component: adminLayout,
         redirect: '/admin/index',
-        hidden:true,
-        meta: { title: 'admin', icon: 'home', type: 'admin' },
+        hidden:true,     
+        meta: { title: 'admin', icon: 'home',  breadcrumb:false, type: 'admin' },
         children: [{
             path: "/admin/index",
-            name: "dashborad",
             hidden: false,
             component: () => import("@/views/admin/dashboard/index"),
-         meta: { title: 'dashboard', icon: 'home', type: 'admin' }
+           meta: { title: 'dashboard', icon: 'home', type: 'admin' }
         },
         {
          path:"/admin/article",

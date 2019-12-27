@@ -34,13 +34,14 @@ import {countIp} from "@/api/client"
        if(process.env.NODE_ENV === 'development'){
          return false;  //当为开发环境时不记录访问Ip
        }
-       recondIp(returnCitySN).then(response => {
-      
+       if(!sessionStorage.getItem('accessView')){  //防止刷新界面 再次记录
+        recondIp(returnCitySN).then(response => {
+        sessionStorage.setItem('accessView',true)
         })
         .catch(err => {
       
         });
-      }
+      } }
     },
     }
 </script>

@@ -36,11 +36,19 @@ export default {
        let renderRoutes =[];
        if(routes.length>0){
          routes.forEach(element => {
-           if(element.meta.type === 'admin' && element.children){  //获取管理端展示路由
-            renderRoutes=element.children; 
+           if(element.meta.type === 'admin'){  //获取管理端展示路由
+             if(element.meta.index){ //默认首页
+            renderRoutes.push(element.children[0]); 
+             }
+            else{
+            renderRoutes.push(element); 
+            }
+         
+           
            }
          });
        } 
+       console.log(renderRoutes,'1')
         return renderRoutes;
       }
   },

@@ -34,18 +34,18 @@ export const adminRouterMap =[{
         path: "/admin",
         component: adminLayout,
         redirect: '/admin/index',
-        hidden:true,     
-        meta: { title: 'admin', icon: 'home',  breadcrumb:false, type: 'admin' },
+        meta: { title: 'admin', icon: 'home',  breadcrumb:false, type: 'admin',index:true },
         children: [{
             path: "/admin/index",
             hidden: false,
             component: () => import("@/views/admin/dashboard/index"),
-           meta: { title: 'dashboard', icon: 'home', type: 'admin' }
-        },
+            meta: { title: 'dashboard', icon: 'home', type: 'admin' }
+        }]},
         {
-         path:"/admin/article",
+         path:"article",
+         component: adminLayout,
          redirect:"/admin/article/list",
-         hidden:true,
+         hidden:false,
          meta: { title: '文章管理', icon: 'read', type: 'admin' },
          children:[
              {
@@ -69,14 +69,15 @@ export const adminRouterMap =[{
          ]   
         },
         {
-         path:"/admin/article",
+         path:"system",
+         component: adminLayout,
          redirect:"/admin/system/access",
-         hidden:true,
+         hidden:false,
          meta: { title: '系统管理', icon: 'setting', type: 'admin' },
          children:[
              {
                  path:"/admin/system/access",
-                 component:( )=> import("@/views/admin/system/access"),
+                 component:( )=> import("@/views/admin/system/log"),
                  hidden: false,
                  meta:{title:"访问统计",icon: 'read', type: 'admin'}
              },
@@ -89,8 +90,8 @@ export const adminRouterMap =[{
              }
          ]   
         }
-        ]
-    },
+        
+    ,
      {
         path: "/admin/login",
         name: "login",
@@ -99,12 +100,12 @@ export const adminRouterMap =[{
         meta:{title:"标签管理",icon: 'tags', type: 'admin'}
     }
 ]
-const routes = baseRoutes.concat(indexRouteMap, adminRouterMap);
+const routesMap = baseRoutes.concat(indexRouteMap, adminRouterMap);
 
 export default new Router({
     // mode: 'history', //后端支持可开
 
-    routes: routes
+    routes: routesMap
 })
 
 // //解决路由跳转问题

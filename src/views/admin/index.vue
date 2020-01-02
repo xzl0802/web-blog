@@ -7,7 +7,7 @@
         <a-layout-content class="layoutContent">
           <Breadcrumb />
           <div class="contentMain">
-       <router-view></router-view>
+         <router-view></router-view>
           </div>
         </a-layout-content>
       </a-layout>
@@ -49,7 +49,6 @@ export default {
   margin: 10px;
   padding: 10px;
   background: #fff;
-  width: 100%;
   height: 100vh;
   display: flex;
   display: -webkit-flex;
@@ -57,7 +56,7 @@ export default {
 }
 .contentMain {
   width: 100%;
-  border: #1890ff;
+   margin:   10px 0 0 0;
   flex-grow: 1;
 }
 </style>

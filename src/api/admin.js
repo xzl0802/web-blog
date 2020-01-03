@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:27:23 
  * @Last Modified by: xzl
- * @Last Modified time: 2020-01-03 14:29:45
+ * @Last Modified time: 2020-01-03 15:44:27
  */
 
 import  request  from '@/utils/request'
@@ -30,3 +30,13 @@ export  function getIpCounts(data){  //获取首页ip 访问统计
    })
 
 }
+
+
+export  function getAllLabel(data){  //获取所有标签
+    return request({
+     url:"/admin/count/ip",
+     method:"POST",
+     data:data 
+    })
+ 
+ }

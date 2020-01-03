@@ -54,13 +54,13 @@ export default {
         },
         {
           title: "访问时间",
-          dataIndex: "createTime",
+          dataIndex: "createdTime",
           key: "createTime",
           align: "center"
         },
         {
           title: "修改时间",
-          dataIndex: "updateTime",
+          dataIndex: "updatedTime",
           key: "updateTime",
           align: "center"
         }

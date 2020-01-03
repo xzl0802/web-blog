@@ -1,8 +1,8 @@
 /*
  * @Author: xzl 
  * @Date: 2020-01-03 15:21:55 
- * @Last Modified by:   xzl 
- * @Last Modified time: 2020-01-03 15:21:55 
+ * @Last Modified by: xzl
+ * @Last Modified time: 2020-01-03 16:14:10
  */
 
  .search_content {
@@ -10,4 +10,7 @@
   }
   .rightBtn{
     text-align: right;
+  }
+  .rightBtn > .ant-btn{
+    margin-right:5px;
   }

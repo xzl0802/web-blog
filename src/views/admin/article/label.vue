@@ -1,10 +1,12 @@
 <template>
   <div>
     <a-row class="search_content">
-      <a-col :span="21"></a-col>
-      <a-col :span="3" class="rightBtn">
-        <a-button type="primary" @click="tabQuery">查询</a-button></a-col
-      >
+      <a-col :span="18"></a-col>
+      <a-col :span="6" class="rightBtn">
+        <a-button type="primary"  @click="tabQuery" >查询</a-button>
+        <a-button type="primary"  @click="labelAdd" >新增</a-button>
+         <a-button type="danger">删除</a-button>
+        </a-col>
     </a-row>
 
     <a-table
@@ -23,7 +25,7 @@
 </template>
 
 <script>
-import { getIpCounts } from "@/api/admin";
+import { getAllLabel } from "@/api/admin";
 export default {
   data() {
     return {
@@ -36,31 +38,38 @@ export default {
           align: "center"
         },
         {
-          title: "地址ID",
-          dataIndex: "cid",
+          title: "标签名称",
+          dataIndex: "name",
           align: "center"
         },
         {
-          title: "地址",
-          dataIndex: "cname",
+          title: "描述",
+          dataIndex: "description",
           key: "address",
           align: "center"
         },
         {
-          title: "IP",
-          dataIndex: "cip",
+          title: "创建者",
+          dataIndex: "createdUser",
           key: "ip",
           align: "center"
         },
         {
-          title: "访问时间",
-          dataIndex: "createTime",
+          title: "创建时间",
+          dataIndex: "createdTime",
           key: "createTime",
           align: "center"
         },
         {
-          title: "修改时间",
-          dataIndex: "updateTime",
+          title: "修改者",
+          dataIndex: "updatedUser",
+          key: "updateTime",
+          align: "center"
+        }
+        ,
+        {
+          title: "修改事件",
+          dataIndex: "updatedTime",
           key: "updateTime",
           align: "center"
         }
@@ -87,7 +96,7 @@ export default {
       let params = {};
       params.page = this.page;
       params.limit = this.limit;
-      getIpCounts(params).then(res => {
+      getAllLabel(params).then(res => {
         const pagination = { ...this.pagination };
         pagination.total = res.data.total;
         this.loading = false;
@@ -100,6 +109,9 @@ export default {
       this.limit = 10;
       this.page = 1;
       this.fetchData();
+    },
+    labelAdd(){  //添加点击事件
+
     }
   },
   created() {},

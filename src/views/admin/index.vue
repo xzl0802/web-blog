@@ -61,3 +61,6 @@ flex-direction: column;
 }
 
 </style>
+<style>
+  @import '~@/assets/css/public.css'; /*引入公共样式*/
+</style>

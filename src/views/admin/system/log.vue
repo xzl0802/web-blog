@@ -110,10 +110,5 @@ export default {
 </script>
 
 <style scoped>
-.search_content {
-  margin-bottom: 10px;
-}
-.rightBtn{
-  text-align: right;
-}
+
 </style>

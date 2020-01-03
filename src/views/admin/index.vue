@@ -5,10 +5,12 @@
       <a-layout>
         <AdminHeader />
         <a-layout-content class="layoutContent">
-          <Breadcrumb />
-          <div class="contentMain">
-         <router-view></router-view>
-          </div>
+          <a-card class="layoutContent-card" :bodyStyle="{ marginTop: '5px',padding:'10px' }">
+            <Breadcrumb slot="title" />
+            <div class="contentMain">
+              <router-view></router-view>
+            </div>
+          </a-card>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -50,13 +52,12 @@ export default {
   padding: 10px;
   background: #fff;
   height: 100vh;
+}
+.layoutContent-card{
+  height: 100%;
   display: flex;
   display: -webkit-flex;
-  flex-direction: column;
+flex-direction: column;
 }
-.contentMain {
-  width: 100%;
-   margin:   10px 0 0 0;
-  flex-grow: 1;
-}
+
 </style>

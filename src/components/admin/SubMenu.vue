@@ -21,6 +21,6 @@ export default {
   },
   methods:{
  
-     },
+     }
 };
 </script>

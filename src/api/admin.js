@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:27:23 
  * @Last Modified by: xzl
- * @Last Modified time: 2019-12-26 14:58:07
+ * @Last Modified time: 2020-01-03 10:28:54
  */
 
 import  request  from '@/utils/request'
@@ -22,3 +22,11 @@ export function adminLogin(data){  //登录接口
      })
  }
 
+export  function getIpCounts(){  //获取首页ip 访问统计
+   return request({
+    url:"/admin/count/ip",
+    method:"POST",
+    data:data 
+   })
+
+}

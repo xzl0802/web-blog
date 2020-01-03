@@ -48,7 +48,6 @@ export default {
            }
          });
        } 
-       console.log(renderRoutes,'1')
         return renderRoutes;
       }
   },

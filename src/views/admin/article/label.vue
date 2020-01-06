@@ -5,6 +5,7 @@
       <a-col :span="6" class="rightBtn">
         <a-button type="primary"  @click="tabQuery" >查询</a-button>
         <a-button type="primary"  @click="labelAdd" >新增</a-button>
+            <a-button type="primary"  @click="labelEdit" >编辑</a-button>
          <a-button type="danger">删除</a-button>
         </a-col>
     </a-row>
@@ -21,6 +22,16 @@
       {{name.first}} {{name.last}}
     </template> -->
     </a-table>
+
+      <a-modal
+      :title="modalTitle"
+      :visible="visible"
+      @ok="handleOk"
+      :confirmLoading="confirmLoading"
+      @cancel="handleCancel"
+    >
+
+    </a-modal> 
   </div>
 </template>
 
@@ -77,7 +88,10 @@ export default {
       pagination: {},
       loading: false,
       page: 1,
-      limit: 10
+      limit: 10,
+      modalTitle:"新增标签",
+      visible:false,
+      confirmLoading:false
     };
   },
   methods: {
@@ -111,8 +125,19 @@ export default {
       this.fetchData();
     },
     labelAdd(){  //添加点击事件
+    this.modalTitle ='新增标签'
+      this.visible = true;
+    },
+    labelEdit(){ //编辑点击事件
+    this.modalTitle ='编辑标签'
+      this.visible = true;
+    },
+    handleOk(e){ //模态框确认点击事件
 
-    }
+    },
+     handleCancel(e) {
+    this.visible = false;
+      },
   },
   created() {},
   mounted() {

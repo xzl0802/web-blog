@@ -26,16 +26,17 @@
     <a-modal
       :title="modalTitle"
       :visible="visible"
+      okText='确定'
       @ok="handleOk"
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
     >
-      <a-form :form="addForm">
+      <a-form :form="addForm" @submit="submitClick">
         <a-form-item label="标签名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
           <a-input v-decorator="['note', { rules: [{ required: true, message: '请输入标签名称！' }] }]" />
         </a-form-item>
         <a-form-item label="描述" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-          <a-textarea placeholder="标签描述" :rows="4" />
+          <a-textarea placeholder="标签描述" :rows="4"  v-decorator="['desc']"/>
         </a-form-item>
       </a-form>
     </a-modal>
@@ -95,7 +96,6 @@ export default {
       modalTitle: "新增标签",
       visible: false,
       confirmLoading: false,
-      addForm: ""
     };
   },
   beforeCreate() {
@@ -141,11 +141,12 @@ export default {
       this.modalTitle = "编辑标签";
       this.visible = true;
     },
+    submitClick(){ //表单提交事件
+
+    },
     handleOk(e) {
       //模态框确认点击事件
-      this.addForm.validateFields((errors, values) => {
-        console.log(errors,'1')
-      });
+      this.submitClick();
     },
     handleCancel(e) {
       this.visible = false;
@@ -153,6 +154,7 @@ export default {
   },
   created() {},
   mounted() {
+    console.log(this.addForm,'1')
     this.fetchData();
   }
 };

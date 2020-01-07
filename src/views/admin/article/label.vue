@@ -26,17 +26,17 @@
     <a-modal
       :title="modalTitle"
       :visible="visible"
-      okText='确定'
+      okText="确定"
       @ok="handleOk"
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
     >
-      <a-form :form="addForm" @submit="submitClick">
+      <a-form :form="addForm">
         <a-form-item label="标签名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-          <a-input v-decorator="['note', { rules: [{ required: true, message: '请输入标签名称！' }] }]" />
+          <a-input v-decorator="['name', { rules: [{ required: true, message: '请输入标签名称！' }] }]" />
         </a-form-item>
         <a-form-item label="描述" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-          <a-textarea placeholder="标签描述" :rows="4"  v-decorator="['desc']"/>
+          <a-textarea placeholder="标签描述" :rows="4" v-decorator="['desc']" />
         </a-form-item>
       </a-form>
     </a-modal>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { getAllLabel } from "@/api/admin";
+import { getAllLabel, addLabel } from "@/api/admin";
 export default {
   data() {
     return {
@@ -53,7 +53,7 @@ export default {
         {
           title: "序号",
           dataIndex: "id",
-       
+
           align: "center"
         },
         {
@@ -70,7 +70,7 @@ export default {
         {
           title: "创建者",
           dataIndex: "createdUser",
-    
+
           align: "center"
         },
         {
@@ -95,11 +95,11 @@ export default {
       limit: 10,
       modalTitle: "新增标签",
       visible: false,
-      confirmLoading: false,
+      confirmLoading: false
     };
   },
   beforeCreate() {
-    this.addForm = this.$form.createForm(this, { name: 'form_in_modal' });
+    this.addForm = this.$form.createForm(this, { name: "form_in_modal" });
   },
   methods: {
     handleTableChange(pagination, filters, sorter) {
@@ -142,13 +142,19 @@ export default {
       this.visible = true;
     },
     handleOk(e) {
-    const form = this.addForm;
-        form.validateFields((err, values) => {
+      const form = this.addForm;
+
+      form.validateFields((err, values) => {
         if (err) {
           return;
         }
-        form.resetFields();
-        this.visible = false;
+        this.confirmLoading = true;
+        addLabel(values).then(res => {
+          form.resetFields();
+          this.visible = false;
+          this.tabQuery();
+          this.confirmLoading = false;
+        });
       });
     },
     handleCancel(e) {

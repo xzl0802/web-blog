@@ -95,7 +95,8 @@ export default {
       limit: 10,
       modalTitle: "新增标签",
       visible: false,
-      confirmLoading: false
+      confirmLoading: false,
+      labelId:null
     };
   },
   beforeCreate() {
@@ -143,19 +144,26 @@ export default {
     },
     handleOk(e) {
       const form = this.addForm;
-
       form.validateFields((err, values) => {
         if (err) {
           return;
         }
         this.confirmLoading = true;
-        addLabel(values).then(res => {
+        this.addHandle(form,values);
+      });
+    },
+    addHandle(form,values){  //新增点击提交事件
+         this.labelId=null;
+         addLabel(values).then(res => {
           form.resetFields();
           this.visible = false;
           this.tabQuery();
           this.confirmLoading = false;
+        
         });
-      });
+    },
+    updateHandle(values){
+    
     },
     handleCancel(e) {
       this.visible = false;

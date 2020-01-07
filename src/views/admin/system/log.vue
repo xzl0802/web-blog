@@ -32,7 +32,7 @@ export default {
         {
           title: "序号",
           dataIndex: "id",
-          key: "name",
+          key: "id",
           align: "center"
         },
         {
@@ -43,7 +43,7 @@ export default {
         {
           title: "地址",
           dataIndex: "cname",
-          key: "address",
+          key: "cname",
           align: "center"
         },
         {
@@ -55,13 +55,13 @@ export default {
         {
           title: "访问时间",
           dataIndex: "createdTime",
-          key: "createTime",
+          key: "createdTime",
           align: "center"
         },
         {
           title: "修改时间",
           dataIndex: "updatedTime",
-          key: "updateTime",
+          key: "updatedTime",
           align: "center"
         }
       ],

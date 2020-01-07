@@ -3,11 +3,11 @@
     <a-row class="search_content">
       <a-col :span="18"></a-col>
       <a-col :span="6" class="rightBtn">
-        <a-button type="primary"  @click="tabQuery" >查询</a-button>
-        <a-button type="primary"  @click="labelAdd" >新增</a-button>
-            <a-button type="primary"  @click="labelEdit" >编辑</a-button>
-         <a-button type="danger">删除</a-button>
-        </a-col>
+        <a-button type="primary" @click="tabQuery">查询</a-button>
+        <a-button type="primary" @click="labelAdd">新增</a-button>
+        <a-button type="primary" @click="labelEdit">编辑</a-button>
+        <a-button type="danger">删除</a-button>
+      </a-col>
     </a-row>
 
     <a-table
@@ -20,18 +20,25 @@
     >
       <!-- <template slot="name" slot-scope="name">
       {{name.first}} {{name.last}}
-    </template> -->
+      </template>-->
     </a-table>
 
-      <a-modal
+    <a-modal
       :title="modalTitle"
       :visible="visible"
       @ok="handleOk"
       :confirmLoading="confirmLoading"
       @cancel="handleCancel"
     >
-
-    </a-modal> 
+      <a-form :form="addForm">
+        <a-form-item label="标签名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+          <a-input v-decorator="['note', { rules: [{ required: true, message: '请输入标签名称！' }] }]" />
+        </a-form-item>
+        <a-form-item label="描述" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
+          <a-textarea placeholder="标签描述" :rows="4" />
+        </a-form-item>
+      </a-form>
+    </a-modal>
   </div>
 </template>
 
@@ -45,7 +52,7 @@ export default {
         {
           title: "序号",
           dataIndex: "id",
-          key: "name",
+       
           align: "center"
         },
         {
@@ -56,32 +63,28 @@ export default {
         {
           title: "描述",
           dataIndex: "description",
-          key: "address",
+
           align: "center"
         },
         {
           title: "创建者",
           dataIndex: "createdUser",
-          key: "ip",
+    
           align: "center"
         },
         {
           title: "创建时间",
           dataIndex: "createdTime",
-          key: "createTime",
           align: "center"
         },
         {
           title: "修改者",
           dataIndex: "updatedUser",
-          key: "updateTime",
           align: "center"
-        }
-        ,
+        },
         {
           title: "修改事件",
           dataIndex: "updatedTime",
-          key: "updateTime",
           align: "center"
         }
       ],
@@ -89,10 +92,14 @@ export default {
       loading: false,
       page: 1,
       limit: 10,
-      modalTitle:"新增标签",
-      visible:false,
-      confirmLoading:false
+      modalTitle: "新增标签",
+      visible: false,
+      confirmLoading: false,
+      addForm: ""
     };
+  },
+  beforeCreate() {
+    this.addForm = this.$form.createForm();
   },
   methods: {
     handleTableChange(pagination, filters, sorter) {
@@ -124,20 +131,25 @@ export default {
       this.page = 1;
       this.fetchData();
     },
-    labelAdd(){  //添加点击事件
-    this.modalTitle ='新增标签'
+    labelAdd() {
+      //添加点击事件
+      this.modalTitle = "新增标签";
       this.visible = true;
     },
-    labelEdit(){ //编辑点击事件
-    this.modalTitle ='编辑标签'
+    labelEdit() {
+      //编辑点击事件
+      this.modalTitle = "编辑标签";
       this.visible = true;
     },
-    handleOk(e){ //模态框确认点击事件
-
+    handleOk(e) {
+      //模态框确认点击事件
+      this.addForm.validateFields((errors, values) => {
+        console.log(errors,'1')
+      });
     },
-     handleCancel(e) {
-    this.visible = false;
-      },
+    handleCancel(e) {
+      this.visible = false;
+    }
   },
   created() {},
   mounted() {
@@ -147,5 +159,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

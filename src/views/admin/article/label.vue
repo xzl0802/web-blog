@@ -99,7 +99,7 @@ export default {
     };
   },
   beforeCreate() {
-    this.addForm = this.$form.createForm();
+    this.addForm = this.$form.createForm(this, { name: 'form_in_modal' });
   },
   methods: {
     handleTableChange(pagination, filters, sorter) {
@@ -141,12 +141,15 @@ export default {
       this.modalTitle = "编辑标签";
       this.visible = true;
     },
-    submitClick(){ //表单提交事件
-
-    },
     handleOk(e) {
-      //模态框确认点击事件
-      this.submitClick();
+    const form = this.addForm;
+        form.validateFields((err, values) => {
+        if (err) {
+          return;
+        }
+        form.resetFields();
+        this.visible = false;
+      });
     },
     handleCancel(e) {
       this.visible = false;
@@ -154,7 +157,6 @@ export default {
   },
   created() {},
   mounted() {
-    console.log(this.addForm,'1')
     this.fetchData();
   }
 };

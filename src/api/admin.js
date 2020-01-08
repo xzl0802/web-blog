@@ -2,7 +2,7 @@
  * @Author: xzl 
  * @Date: 2019-12-12 14:27:23 
  * @Last Modified by: xzl
- * @Last Modified time: 2020-01-07 15:03:35
+ * @Last Modified time: 2020-01-08 14:23:59
  */
 
 import  request  from '@/utils/request'
@@ -48,3 +48,18 @@ export  function getAllLabel(data){  //获取所有标签
         data:data 
        })
  }
+
+ export  function updateLabel(data){ //新增标签
+    return  request({
+       url:"/admin/label/update",
+       method:"POST",
+       data:data 
+      })
+}
+
+export function deleteLabel(data){  //删除标签
+      return request({
+          url:"/admin/label/delete/"+data.id,
+          method:"get"
+      })
+}

@@ -6,7 +6,7 @@
         <a-button type="primary" @click="tabQuery">查询</a-button>
         <a-button type="primary" @click="labelAdd">新增</a-button>
         <a-button type="primary" @click="labelEdit">编辑</a-button>
-        <a-button type="danger">删除</a-button>
+        <a-button type="danger" @click="labelDelete">删除</a-button>
       </a-col>
     </a-row>
 
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { getAllLabel, addLabel } from "@/api/admin";
+import { getAllLabel, addLabel,updateLabel,deleteLabel } from "@/api/admin";
 export default {
   data() {
     return {
@@ -173,14 +173,14 @@ export default {
        this.labelId=this.selectedRowKeys.id
       this.modeType = "edit";
     },
-    handleOk(e) {
+    handleOk(e) {  //模态框确认点击事件
       const form = this.addForm;
       form.validateFields((err, values) => {
         if (err) {
           return;
         }
         this.confirmLoading = true;
-        if (this.modeType == "add") {
+        if (this.modeType == "add") {  //根据modelType  判断是新增还是修改
           this.addHandle(form, values);
         } else {
           this.updateHandle(form, values);
@@ -197,11 +197,39 @@ export default {
         this.confirmLoading = false;
       });
     },
-    updateHandle(form, values) {
-      //修改提交事件
+    updateHandle(form, values) {  //修改提交事件
+      values.id =this.labelId; //赋值标签的id
+      updateLabel(values).then(res => {
+        form.resetFields();
+        this.visible = false;
+        this.tabQuery();
+        this.confirmLoading = false;
+      });
     },
-    handleCancel(e) {
+    handleCancel(e) { //模态框点击取消事件
       this.visible = false;
+    },
+    labelDelete(){ //删除点击事件
+     if(!this.selectedRowKeys){
+         this.$message.warning('请选择需要删除的标签');
+         return false;
+      } 
+      let  id  = this.selectedRowKeys.id;
+      let that = this;
+     this.$confirm({
+            title: '确认删除？',
+            content: h => <div style="color:red;">确认删除此条标签？</div>,
+            okText: '确认',
+            cancelText: '取消',
+            onOk() {
+            deleteLabel({"id":id}).then(res => {
+            that.tabQuery();      
+      });  
+            },
+            onCancel() {
+              
+            },
+          });
     }
   },
   created() {},

@@ -11,7 +11,7 @@
     </a-row>
 
     <a-table
-     :rowSelection="{type:'radio',selectedRowKeys: selectedRowKeys, onChange: onSelectChange,onChange: onTabChange}"
+     :rowSelection="{type:'radio',selectedRowKeys: selectedRowKeys, onSelect: onSelectChange,onChange: onTabChange}"
       :columns="columns"
       :dataSource="data"
       :pagination="pagination"

@@ -11,6 +11,7 @@
     </a-row>
 
     <a-table
+      :rowSelection="rowSelection"
       :columns="columns"
       :dataSource="data"
       :pagination="pagination"
@@ -96,14 +97,30 @@ export default {
       modalTitle: "新增标签",
       visible: false,
       confirmLoading: false,
-      labelId:null
+      labelId: null,
+      modeType: "add",
+      selectedRowKeys:''
     };
   },
+  computed: {
+    rowSelection() {
+      //表格选择事件
+      const { selectedRowKeys } = this;
+      return {
+        type:'radio',
+        onSelect:this.onSelectChange
+      };
+    }
+  },
   beforeCreate() {
-    this.addForm = this.$form.createForm(this, { name: "form_in_modal" });
+    this.addForm = this.$form.createForm(this, { name: "form_in_modal" }); //创建表单
   },
   methods: {
+    onSelectChange(record, selected, selectedRows, nativeEvent){  //表格单选事件
+     this.selectedRowKeys =record;
+    },
     handleTableChange(pagination, filters, sorter) {
+      //表格分页事件处理
       //处理表格change事件
       const pager = { ...this.pagination };
       pager.current = pagination.current;
@@ -136,11 +153,25 @@ export default {
       //添加点击事件
       this.modalTitle = "新增标签";
       this.visible = true;
+      this.modeType = add;
+      this.labelId=null
     },
     labelEdit() {
       //编辑点击事件
       this.modalTitle = "编辑标签";
+      if(!this.selectedRowKeys){
+         this.$message.warning('请选择需要编辑的标签');
+         return false;
+      } 
       this.visible = true;
+      setTimeout(()=>{
+          this.addForm.setFieldsValue({
+          name: this.selectedRowKeys.name,
+          desc:this.selectedRowKeys.description
+        }); 
+        },0)  //延迟向表单赋值 。解决报错问题
+       this.labelId=this.selectedRowKeys.id
+      this.modeType = "edit";
     },
     handleOk(e) {
       const form = this.addForm;
@@ -149,21 +180,25 @@ export default {
           return;
         }
         this.confirmLoading = true;
-        this.addHandle(form,values);
+        if (this.modeType == "add") {
+          this.addHandle(form, values);
+        } else {
+          this.updateHandle(form, values);
+        }
       });
     },
-    addHandle(form,values){  //新增点击提交事件
-         this.labelId=null;
-         addLabel(values).then(res => {
-          form.resetFields();
-          this.visible = false;
-          this.tabQuery();
-          this.confirmLoading = false;
-        
-        });
+    addHandle(form, values) {
+      //新增点击提交事件
+      this.labelId = null;
+      addLabel(values).then(res => {
+        form.resetFields();
+        this.visible = false;
+        this.tabQuery();
+        this.confirmLoading = false;
+      });
     },
-    updateHandle(values){
-    
+    updateHandle(form, values) {
+      //修改提交事件
     },
     handleCancel(e) {
       this.visible = false;

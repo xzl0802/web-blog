@@ -11,7 +11,7 @@
     </a-row>
 
     <a-table
-      :rowSelection="rowSelection"
+     :rowSelection="{type:'radio',selectedRowKeys: selectedRowKeys, onChange: onSelectChange,onChange: onTabChange}"
       :columns="columns"
       :dataSource="data"
       :pagination="pagination"
@@ -99,25 +99,21 @@ export default {
       confirmLoading: false,
       labelId: null,
       modeType: "add",
-      selectedRowKeys:''
+      selectedRowKeys:[],
+      selectedRow:''
     };
   },
   computed: {
-    rowSelection() {
-      //表格选择事件
-      const { selectedRowKeys } = this;
-      return {
-        type:'radio',
-        onSelect:this.onSelectChange
-      };
-    }
   },
   beforeCreate() {
     this.addForm = this.$form.createForm(this, { name: "form_in_modal" }); //创建表单
   },
   methods: {
+    onTabChange(selectedRowKeys){
+    this.selectedRowKeys = selectedRowKeys; 
+    },
     onSelectChange(record, selected, selectedRows, nativeEvent){  //表格单选事件
-     this.selectedRowKeys =record;
+     this.selectedRow = record;
     },
     handleTableChange(pagination, filters, sorter) {
       //表格分页事件处理
@@ -147,7 +143,10 @@ export default {
       //查询点击事件
       this.limit = 10;
       this.page = 1;
+    this.selectedRow ='';
+    this.selectedRowKeys = [];
       this.fetchData();
+ 
     },
     labelAdd() {
       //添加点击事件
@@ -159,18 +158,18 @@ export default {
     labelEdit() {
       //编辑点击事件
       this.modalTitle = "编辑标签";
-      if(!this.selectedRowKeys){
+      if(!this.selectedRow){
          this.$message.warning('请选择需要编辑的标签');
          return false;
       } 
       this.visible = true;
       setTimeout(()=>{
           this.addForm.setFieldsValue({
-          name: this.selectedRowKeys.name,
-          desc:this.selectedRowKeys.description
+          name: this.selectedRow.name,
+          desc:this.selectedRow.description
         }); 
         },0)  //延迟向表单赋值 。解决报错问题
-       this.labelId=this.selectedRowKeys.id
+       this.labelId=this.selectedRow.id
       this.modeType = "edit";
     },
     handleOk(e) {  //模态框确认点击事件
@@ -210,11 +209,11 @@ export default {
       this.visible = false;
     },
     labelDelete(){ //删除点击事件
-     if(!this.selectedRowKeys){
+     if(!this.selectedRow){
          this.$message.warning('请选择需要删除的标签');
          return false;
       } 
-      let  id  = this.selectedRowKeys.id;
+      let  id  = this.selectedRow.id;
       let that = this;
      this.$confirm({
             title: '确认删除？',

@@ -152,7 +152,7 @@ export default {
       //添加点击事件
       this.modalTitle = "新增标签";
       this.visible = true;
-      this.modeType = add;
+      this.modeType = "add";
       this.labelId=null
     },
     labelEdit() {

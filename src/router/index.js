@@ -58,7 +58,7 @@ export const adminRouterMap =[{
                 path:"/admin/article/editor",
                 component:( )=> import("@/views/admin/article/editor"),
                 hidden:true,
-                meta:{title:"修改",icon: 'read', type: 'admin'}  
+                meta:{title:"文章新增/编辑",icon: 'read', type: 'admin'}  
              },
              {
                 path:"/admin/article/label",

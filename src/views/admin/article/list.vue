@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getAllLabel, addLabel,updateLabel,deleteLabel } from "@/api/admin";
+import {getALlArticleList, addLabel,updateLabel,deleteLabel } from "@/api/admin";
 export default {
   data() {
     return {
@@ -40,29 +40,29 @@ export default {
           align: "center"
         },
         {
-          title: "标签",
-          dataIndex: "labels",
+          title: "标题",
+          dataIndex: "title",
           align: "center"
         },
         {
           title: "文章标签",
-          dataIndex: "title",
+          dataIndex: "labelName",
 
           align: "center"
         },
           {
           title: "是否发布",
-          dataIndex: "isShow",
+          dataIndex: "is_show",
           align: "center"
         },
           {
           title: "置顶",
-          dataIndex: "isSticky",
+          dataIndex: "is_sticky",
           align: "center"
         },
             {
           title: "状态",
-          dataIndex: "status",
+          dataIndex: "type",
           align: "center"
         },
         {
@@ -128,7 +128,7 @@ export default {
       let params = {};
       params.page = this.page;
       params.limit = this.limit;
-      getAllLabel(params).then(res => {
+      getALlArticleList(params).then(res => {
         const pagination = { ...this.pagination };
         pagination.total = res.data.total;
         this.loading = false;

@@ -5,12 +5,18 @@
  * @Last Modified time: 2020-01-03 16:14:10
  */
 
- .search_content {
+.search_content {
     margin-bottom: 10px;
-  }
-  .rightBtn{
+}
+
+.rightBtn {
     text-align: right;
-  }
-  .rightBtn > .ant-btn{
-    margin-right:5px;
-  }
+}
+
+.rightBtn>.ant-btn {
+    margin-right: 5px;
+}
+
+.v-note-wrapper {
+    z-index: 1!important;
+}

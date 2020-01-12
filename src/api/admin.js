@@ -5,61 +5,77 @@
  * @Last Modified time: 2020-01-08 14:23:59
  */
 
-import  request  from '@/utils/request'
+import request from '@/utils/request'
 
-export function adminLogin(data){  //登录接口
+export function adminLogin(data) { //登录接口
     return request({
-        url:"/admin/login",
-        method:"POST",
-        data:data
+        url: "/admin/login",
+        method: "POST",
+        data: data
     })
- }
+}
 
- export function getUserInfo(){  //获取用户信息
-     return request({
-         url:"/admin/user/info",
-         method:"GET"
-     })
- }
+export function getUserInfo() { //获取用户信息
+    return request({
+        url: "/admin/user/info",
+        method: "GET"
+    })
+}
 
-export  function getIpCounts(data){  //获取首页ip 访问统计
-   return request({
-    url:"/admin/count/ip",
-    method:"POST",
-    data:data 
-   })
+export function getIpCounts(data) { //获取首页ip 访问统计
+    return request({
+        url: "/admin/count/ip",
+        method: "POST",
+        data: data
+    })
 
 }
 
 
-export  function getAllLabel(data){  //获取所有标签
+export function getAllLabel(data) { //获取所有标签
     return request({
-     url:"/admin/label/query",
-     method:"POST",
-     data:data 
+        url: "/admin/label/query",
+        method: "POST",
+        data: data
     })
- 
- }
 
- export  function addLabel(data){ //新增标签
-     return  request({
-        url:"/admin/label/add",
-        method:"POST",
-        data:data 
-       })
- }
-
- export  function updateLabel(data){ //新增标签
-    return  request({
-       url:"/admin/label/update",
-       method:"POST",
-       data:data 
-      })
 }
 
-export function deleteLabel(data){  //删除标签
-      return request({
-          url:"/admin/label/delete/"+data.id,
-          method:"get"
-      })
+export function addLabel(data) { //新增标签
+    return request({
+        url: "/admin/label/add",
+        method: "POST",
+        data: data
+    })
+}
+
+export function updateLabel(data) { //新增标签
+    return request({
+        url: "/admin/label/update",
+        method: "POST",
+        data: data
+    })
+}
+
+export function deleteLabel(data) { //删除标签
+    return request({
+        url: "/admin/label/delete/" + data.id,
+        method: "get"
+    })
+}
+
+export function getALlArticleList(data) { //获取所有的文章
+    return request({
+        url: "/admin/article/list",
+        method: "post",
+        data: data
+    })
+}
+
+export function getAllLabels() { //获取所用的标签
+
+    return request({
+        url: '/admin.article/labels',
+        method: "get"
+    })
 }
